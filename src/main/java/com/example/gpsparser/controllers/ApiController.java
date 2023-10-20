@@ -1,2 +1,4 @@
-package com.example.gpsparser.controllers;public class ApiController {
+package com.example.gpsparser.controllers;
+
+public class ApiController {
 }
