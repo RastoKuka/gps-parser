@@ -3,9 +3,13 @@ package com.example.gpsparser.services;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ParserServiceImpl implements ParserService{
+public class ParserServiceImpl implements ParserService {
     @Override
     public boolean isDecimalDegrees(String input) {
+        char[] chars = input.toCharArray();
+        if (chars[2] == '.') {
+            return true;
+        }
         return false;
     }
 
@@ -27,5 +31,10 @@ public class ParserServiceImpl implements ParserService{
     @Override
     public double parseFromDegreesMinutesSeconds(String input) {
         return 0;
+    }
+
+    @Override
+    public double parseFromDecimalDegrees(String input) {
+        return Double.parseDouble(input);
     }
 }

@@ -6,4 +6,5 @@ public interface ParserService {
     public boolean isDegreesMinutesSeconds(String input);
     public double parseFromDegreesWithDecimalMinutes(String input);
     public double parseFromDegreesMinutesSeconds(String input);
+    public double parseFromDecimalDegrees(String input);
 }
