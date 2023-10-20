@@ -1,5 +1,6 @@
 package com.example.gpsparser.controllers;
 
+import com.example.gpsparser.models.InputDto;
 import com.example.gpsparser.services.ParserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ private final ParserService parserService;
     }
 
     @PostMapping("/parse")
-    public ResponseEntity<?> parseCoordinates(@RequestBody ){
+    public ResponseEntity<?> parseCoordinates(@RequestBody InputDto inputDto){
 
     }
 }
