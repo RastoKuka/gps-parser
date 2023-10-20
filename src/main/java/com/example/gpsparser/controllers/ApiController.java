@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.management.Notification;
-
 @RestController
 @RequestMapping("/api")
 public class ApiController {
@@ -26,8 +24,8 @@ public class ApiController {
         }
             String inputLongitude = inputDto.getInputLongitude();
             String inputLatitude = inputDto.getInputLatitude();
-            String outputLongitude = "";
-            String outputLatitude = "";
+            String outputLongitude;
+            String outputLatitude;
 
 
             if (parserService.isDecimalDegrees(inputLatitude)) {
