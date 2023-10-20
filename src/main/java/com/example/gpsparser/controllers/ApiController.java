@@ -29,6 +29,7 @@ public class ApiController {
             String outputLongitude = "";
             String outputLatitude = "";
 
+
             if (parserService.isDecimalDegrees(inputLatitude)) {
                 outputLatitude = String.valueOf(parserService.parseFromDecimalDegrees(inputLatitude));
             } else if (parserService.isDegreesWithDecimalMinutes(inputLatitude)) {
@@ -49,7 +50,7 @@ public class ApiController {
             }
 
             return ResponseEntity.ok().body("Longitude: " + outputLongitude +
-                    "Latitude: " + outputLatitude);
+                    "\n Latitude: " + outputLatitude);
         }
        // return ResponseEntity.badRequest().body("Invalid coordinates");
     }

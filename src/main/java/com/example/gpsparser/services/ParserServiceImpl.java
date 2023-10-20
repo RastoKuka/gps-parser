@@ -25,7 +25,7 @@ public class ParserServiceImpl implements ParserService {
 
     @Override
     public double parseFromDegreesWithDecimalMinutes(String input) {
-        String degrees = input.substring(0, 1);
+        String degrees = input.substring(0, 2);
         String minutes = input.substring(3, input.length() - 2);
         double degreesNum = Double.parseDouble(degrees);
         double minutesNum = Double.parseDouble(minutes);
@@ -34,7 +34,7 @@ public class ParserServiceImpl implements ParserService {
 
     @Override
     public double parseFromDegreesMinutesSeconds(String input) {
-        String degrees = input.substring(0, 1);
+        String degrees = input.substring(0, 2);
         String minutes = input.substring(3, 4);
         String seconds = input.substring(6, 9);
         double degreesNum = Double.parseDouble(degrees);
