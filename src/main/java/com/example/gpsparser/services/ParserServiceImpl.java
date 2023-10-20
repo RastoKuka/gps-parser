@@ -25,12 +25,22 @@ public class ParserServiceImpl implements ParserService {
 
     @Override
     public double parseFromDegreesWithDecimalMinutes(String input) {
-        return 0;
+        String degrees = input.substring(0, 1);
+        String minutes = input.substring(3, input.length() - 2);
+        double degreesNum = Double.parseDouble(degrees);
+        double minutesNum = Double.parseDouble(minutes);
+        return degreesNum + (minutesNum / 60);
     }
 
     @Override
     public double parseFromDegreesMinutesSeconds(String input) {
-        return 0;
+        String degrees = input.substring(0, 1);
+        String minutes = input.substring(3, 4);
+        String seconds = input.substring(6, 9);
+        double degreesNum = Double.parseDouble(degrees);
+        double minutesNum = Double.parseDouble(minutes);
+        double secondsNum = Double.parseDouble(seconds);
+        return degreesNum + (minutesNum / 60) + (secondsNum / 3600);
     }
 
     @Override
