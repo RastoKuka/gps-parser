@@ -19,7 +19,8 @@ public class ParserServiceImpl implements ParserService {
     @Override
     public boolean isDegreesMinutesSeconds(String input) {
         return input.toCharArray()[2] == '°' &&
-                input.toCharArray()[5] == '\'';
+                input.toCharArray()[5] == '\'' &&
+                input.toCharArray()[8] == '.';
     }
 
     @Override
