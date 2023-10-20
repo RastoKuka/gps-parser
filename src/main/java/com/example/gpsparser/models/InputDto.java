@@ -4,7 +4,7 @@ public class InputDto {
     private String inputLongitude;
     private String inputLatitude;
 
-    public InputDto(){
+    public InputDto() {
     }
 
     public String getInputLongitude() {

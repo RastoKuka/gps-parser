@@ -22,33 +22,33 @@ public class ApiController {
         if (inputDto.getInputLatitude().isEmpty() && inputDto.getInputLongitude().isEmpty()) {
             return ResponseEntity.badRequest().body("Provide at least one coordinate!");
         }
-            String inputLongitude = inputDto.getInputLongitude();
-            String inputLatitude = inputDto.getInputLatitude();
-            String outputLongitude;
-            String outputLatitude;
+        String inputLongitude = inputDto.getInputLongitude();
+        String inputLatitude = inputDto.getInputLatitude();
+        String outputLongitude;
+        String outputLatitude;
 
 
-            if (parserService.isDecimalDegrees(inputLatitude)) {
-                outputLatitude = String.valueOf(parserService.parseFromDecimalDegrees(inputLatitude));
-            } else if (parserService.isDegreesWithDecimalMinutes(inputLatitude)) {
-                outputLatitude = String.valueOf(parserService.parseFromDegreesWithDecimalMinutes(inputLatitude));
-            } else {
-                outputLatitude = String.valueOf(parserService.parseFromDegreesMinutesSeconds(inputLatitude));
-            }
-
-            if (parserService.isDecimalDegrees(inputLongitude)) {
-                outputLongitude = String.valueOf(parserService
-                        .parseFromDecimalDegrees(inputLongitude));
-            } else if (parserService.isDegreesWithDecimalMinutes(inputLongitude)) {
-                outputLongitude = String.valueOf(parserService
-                        .parseFromDegreesWithDecimalMinutes(inputLongitude));
-            } else {
-                outputLongitude = String.valueOf(parserService
-                        .parseFromDegreesMinutesSeconds(inputLongitude));
-            }
-
-            return ResponseEntity.ok().body("Longitude: " + outputLongitude +
-                    "\n Latitude: " + outputLatitude);
+        if (parserService.isDecimalDegrees(inputLatitude)) {
+            outputLatitude = String.valueOf(parserService.parseFromDecimalDegrees(inputLatitude));
+        } else if (parserService.isDegreesWithDecimalMinutes(inputLatitude)) {
+            outputLatitude = String.valueOf(parserService.parseFromDegreesWithDecimalMinutes(inputLatitude));
+        } else {
+            outputLatitude = String.valueOf(parserService.parseFromDegreesMinutesSeconds(inputLatitude));
         }
-       // return ResponseEntity.badRequest().body("Invalid coordinates");
+
+        if (parserService.isDecimalDegrees(inputLongitude)) {
+            outputLongitude = String.valueOf(parserService
+                    .parseFromDecimalDegrees(inputLongitude));
+        } else if (parserService.isDegreesWithDecimalMinutes(inputLongitude)) {
+            outputLongitude = String.valueOf(parserService
+                    .parseFromDegreesWithDecimalMinutes(inputLongitude));
+        } else {
+            outputLongitude = String.valueOf(parserService
+                    .parseFromDegreesMinutesSeconds(inputLongitude));
+        }
+
+        return ResponseEntity.ok().body("Longitude: " + outputLongitude +
+                "\nLatitude: " + outputLatitude);
     }
+    // return ResponseEntity.badRequest().body("Invalid coordinates");
+}
