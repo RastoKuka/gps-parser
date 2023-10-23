@@ -21,8 +21,8 @@ public class ApiController {
     public ResponseEntity<?> parseCoordinates(@RequestBody InputDto inputDto) {
         if (inputDto.getInputLatitude().isEmpty() && inputDto.getInputLongitude().isEmpty()) {
             return ResponseEntity.badRequest().body("Provide at least one coordinate!");
-        } else if (parserService.isInputValid(inputDto.getInputLongitude()) ||
-                parserService.isInputValid(inputDto.getInputLatitude())) {
+        } else if (!parserService.isInputValid(inputDto.getInputLongitude()) ||
+                !parserService.isInputValid(inputDto.getInputLatitude())) {
             return ResponseEntity.badRequest().body("Invalid input!");
         }
 
