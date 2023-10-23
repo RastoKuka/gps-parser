@@ -54,5 +54,4 @@ public class ApiController {
         return ResponseEntity.ok().body("Longitude: " + outputLongitude +
                 "\nLatitude: " + outputLatitude);
     }
-    // return ResponseEntity.badRequest().body("Invalid coordinates");
 }
