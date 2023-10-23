@@ -47,4 +47,9 @@ public class ParserServiceImpl implements ParserService {
     public double parseFromDecimalDegrees(String input) {
         return Double.parseDouble(input);
     }
+
+    @Override
+    public boolean isInputValid(String input) {
+        return input.contains("^[0-9.°']");
+    }
 }
