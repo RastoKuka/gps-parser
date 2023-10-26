@@ -2,6 +2,9 @@ package com.example.gpsparser.services;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ParserServiceImpl implements ParserService {
 
@@ -50,6 +53,15 @@ public class ParserServiceImpl implements ParserService {
 
     @Override
     public boolean isInputValid(String input) {
-        return input.contains("^[0-9.°']");
+        List<String> inList = new ArrayList<>();
+        for (int i = 0; i < input.length(); i++) {
+            inList.add(String.valueOf(input.charAt(i)));
+        }
+        for (String s : inList) {
+            if (!s.matches("[0-9.°'\"]")) {
+                return false;
+            }
+        }
+        return true;
     }
 }
