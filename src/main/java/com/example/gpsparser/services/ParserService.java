@@ -12,6 +12,8 @@ public interface ParserService {
     double parseFromDegreesMinutesSeconds(String input);
 
     double parseFromDecimalDegrees(String input);
+
     boolean isInputValid(String input);
 
+    boolean isNegative(String input);
 }

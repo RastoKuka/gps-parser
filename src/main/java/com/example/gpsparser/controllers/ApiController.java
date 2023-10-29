@@ -23,16 +23,27 @@ public class ApiController {
             return ResponseEntity.badRequest().body("Provide at least one coordinate!");
         }
 
-
-        if (!parserService.isInputValid(inputDto.getInputLongitude()) ||
-                !parserService.isInputValid(inputDto.getInputLatitude())) {
-            return ResponseEntity.badRequest().body("Invalid input!");
-        }
-
-        String inputLongitude = inputDto.getInputLongitude();
-        String inputLatitude = inputDto.getInputLatitude();
+        String inputLongitude;
+        String inputLatitude;
         String outputLongitude;
         String outputLatitude;
+
+        if (parserService.isNegative(inputDto.getInputLongitude())) {
+            inputLongitude = inputDto.getInputLongitude().substring(1);
+        } else {
+            inputLongitude = inputDto.getInputLongitude();
+        }
+
+        if (parserService.isNegative(inputDto.getInputLatitude())) {
+            inputLatitude = inputDto.getInputLatitude().substring(1);
+        } else {
+            inputLatitude = inputDto.getInputLatitude();
+        }
+
+        if (!parserService.isInputValid(inputLongitude) ||
+                !parserService.isInputValid(inputLatitude)) {
+            return ResponseEntity.badRequest().body("Invalid input!");
+        }
 
 
         if (parserService.isDecimalDegrees(inputLatitude)) {

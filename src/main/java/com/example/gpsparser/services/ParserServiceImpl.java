@@ -64,4 +64,9 @@ public class ParserServiceImpl implements ParserService {
         }
         return true;
     }
+
+    @Override
+    public boolean isNegative(String input) {
+        return input.startsWith("-");
+    }
 }
