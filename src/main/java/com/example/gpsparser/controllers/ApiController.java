@@ -64,8 +64,20 @@ public class ApiController {
             outputLongitude = String.valueOf(parserService
                     .parseFromDegreesMinutesSeconds(inputLongitude));
         }
+        if (parserService.isNegative(inputDto.getInputLongitude()) &&
+                parserService.isNegative(inputDto.getInputLatitude())) {
+            return ResponseEntity.ok().body("Longitude: -" + outputLongitude +
+                    "\nLatitude: -" + outputLatitude);
+        } else if (parserService.isNegative(inputDto.getInputLongitude())) {
+            return ResponseEntity.ok().body("Longitude: -" + outputLongitude +
+                    "\nLatitude: " + outputLatitude);
+        } else if (parserService.isNegative(inputDto.getInputLatitude())) {
+            return ResponseEntity.ok().body("Longitude: " + outputLongitude +
+                    "\nLatitude: -" + outputLatitude);
+        } else {
+            return ResponseEntity.ok().body("Longitude: " + outputLongitude +
+                    "\nLatitude: " + outputLatitude);
+        }
 
-        return ResponseEntity.ok().body("Longitude: " + outputLongitude +
-                "\nLatitude: " + outputLatitude);
     }
 }
