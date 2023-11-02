@@ -1,10 +1,12 @@
 package com.example.gpsparser.models;
 
 public class InputDto {
-    private String inputLongitude;
-    private String inputLatitude;
+    private final String inputLongitude;
+    private final String inputLatitude;
 
-    public InputDto() {
+    public InputDto(String inputLongitude, String inputLatitude) {
+        this.inputLongitude = inputLongitude;
+        this.inputLatitude = inputLatitude;
     }
 
     public String getInputLongitude() {
