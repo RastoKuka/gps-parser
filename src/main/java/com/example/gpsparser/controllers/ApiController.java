@@ -28,17 +28,26 @@ public class ApiController {
         String outputLongitude;
         String outputLatitude;
 
-        if (parserService.isNegative(inputDto.getInputLongitude())) {
-            inputLongitude = inputDto.getInputLongitude().substring(1);
+        if (inputDto.getInputLongitude().isEmpty()) {
+            inputLongitude = "000000000000000000000000";
         } else {
-            inputLongitude = inputDto.getInputLongitude();
+            if (parserService.isNegative(inputDto.getInputLongitude())) {
+                inputLongitude = inputDto.getInputLongitude().substring(1);
+            } else {
+                inputLongitude = inputDto.getInputLongitude();
+            }
         }
 
-        if (parserService.isNegative(inputDto.getInputLatitude())) {
-            inputLatitude = inputDto.getInputLatitude().substring(1);
+        if (inputDto.getInputLatitude().isEmpty()) {
+            inputLatitude = "000000000000000000000000";
         } else {
-            inputLatitude = inputDto.getInputLatitude();
+            if (parserService.isNegative(inputDto.getInputLatitude())) {
+                inputLatitude = inputDto.getInputLatitude().substring(1);
+            } else {
+                inputLatitude = inputDto.getInputLatitude();
+            }
         }
+
 
         if (!parserService.isInputValid(inputLongitude) ||
                 !parserService.isInputValid(inputLatitude)) {
