@@ -29,7 +29,7 @@ public class ApiController {
         String outputLatitude;
 
         if (inputDto.getInputLongitude().isEmpty()) {
-            inputLongitude = "000000000000000000000000";
+            inputLongitude = "EMPTY";
         } else {
             if (parserService.isNegative(inputDto.getInputLongitude())) {
                 inputLongitude = inputDto.getInputLongitude().substring(1);
@@ -39,7 +39,7 @@ public class ApiController {
         }
 
         if (inputDto.getInputLatitude().isEmpty()) {
-            inputLatitude = "000000000000000000000000";
+            inputLatitude = "EMPTY";
         } else {
             if (parserService.isNegative(inputDto.getInputLatitude())) {
                 inputLatitude = inputDto.getInputLatitude().substring(1);
@@ -49,30 +49,39 @@ public class ApiController {
         }
 
 
-        if (!parserService.isInputValid(inputLongitude) ||
-                !parserService.isInputValid(inputLatitude)) {
+        if ((!inputLongitude.equals("EMPTY") && !parserService.isInputValid(inputLongitude)) ||
+                (!inputLatitude.equals("EMPTY") && !parserService.isInputValid(inputLatitude))) {
             return ResponseEntity.badRequest().body("Invalid input!");
         }
 
-
-        if (parserService.isDecimalDegrees(inputLatitude)) {
-            outputLatitude = String.valueOf(parserService.parseFromDecimalDegrees(inputLatitude));
-        } else if (parserService.isDegreesWithDecimalMinutes(inputLatitude)) {
-            outputLatitude = String.valueOf(parserService.parseFromDegreesWithDecimalMinutes(inputLatitude));
+        if (inputLatitude.equals("EMPTY")) {
+            outputLatitude = "";
         } else {
-            outputLatitude = String.valueOf(parserService.parseFromDegreesMinutesSeconds(inputLatitude));
+            if (parserService.isDecimalDegrees(inputLatitude)) {
+                outputLatitude = String.valueOf(parserService.parseFromDecimalDegrees(inputLatitude));
+            } else if (parserService.isDegreesWithDecimalMinutes(inputLatitude)) {
+                outputLatitude = String.valueOf(parserService.parseFromDegreesWithDecimalMinutes(inputLatitude));
+            } else {
+                outputLatitude = String.valueOf(parserService.parseFromDegreesMinutesSeconds(inputLatitude));
+            }
         }
 
-        if (parserService.isDecimalDegrees(inputLongitude)) {
-            outputLongitude = String.valueOf(parserService
-                    .parseFromDecimalDegrees(inputLongitude));
-        } else if (parserService.isDegreesWithDecimalMinutes(inputLongitude)) {
-            outputLongitude = String.valueOf(parserService
-                    .parseFromDegreesWithDecimalMinutes(inputLongitude));
+        if (inputLongitude.equals("EMPTY")) {
+            outputLongitude = "";
         } else {
-            outputLongitude = String.valueOf(parserService
-                    .parseFromDegreesMinutesSeconds(inputLongitude));
+            if (parserService.isDecimalDegrees(inputLongitude)) {
+                outputLongitude = String.valueOf(parserService
+                        .parseFromDecimalDegrees(inputLongitude));
+            } else if (parserService.isDegreesWithDecimalMinutes(inputLongitude)) {
+                outputLongitude = String.valueOf(parserService
+                        .parseFromDegreesWithDecimalMinutes(inputLongitude));
+            } else {
+                outputLongitude = String.valueOf(parserService
+                        .parseFromDegreesMinutesSeconds(inputLongitude));
+            }
         }
+
+
         if (parserService.isNegative(inputDto.getInputLongitude()) &&
                 parserService.isNegative(inputDto.getInputLatitude())) {
             return ResponseEntity.ok().body("Longitude: -" + outputLongitude +
