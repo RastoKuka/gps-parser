@@ -39,7 +39,14 @@ public class ParserServiceImpl implements ParserService {
     public double parseFromDegreesMinutesSeconds(String input) {
         String degrees = input.substring(0, 2);
         String minutes = input.substring(3, 4);
-        String seconds = input.substring(6, 9);
+        String seconds;
+
+        if ((input.length() > 8) && (input.charAt(8) == '.')) {
+            seconds = input.substring(6, input.length() - 1);
+        } else {
+            seconds = input.substring(6, 7);
+        }
+
         double degreesNum = Double.parseDouble(degrees);
         double minutesNum = Double.parseDouble(minutes);
         double secondsNum = Double.parseDouble(seconds);
